@@ -1,53 +1,109 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Inventory Management System</title>
-  <link rel="stylesheet" href="css/style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inventory Management System</title>
+<link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+
+<!-- SIDEBAR -->
+<div class="sidebar" id="sidebar">
+  <h2>Genius Creator Store</h2>
+
+  <div class="profile-box" id="profileSidebar" style="display:none;">
+    <img src="images/profile.jpg" class="profile-img">
+    <p><strong id="profileName"></strong></p>
+    <p id="profileEmail"></p>
+  </div>
+
+  <nav>
+    <a href="#" onclick="showSection('mainSection')">🏠 Home</a>
+    <a href="#" onclick="showSection('inventorySection')">📦 Inventory</a>
+    <a href="#" onclick="exportCSV()">📄 Export CSV</a>
+    <a href="#" onclick="logoutUser()">🚪 Logout</a>
+  </nav>
+
+  <button class="mode-toggle" onclick="toggleMode()">🌙 Dark Mode</button>
+</div>
+
+<div class="hamburger" onclick="toggleSidebar()">☰</div>
 
 <header class="topbar">
   <h1>Inventory Management System</h1>
-  <p class="subtitle">Simple • Fast • Reliable</p>
 </header>
-
 
 <main>
 
-  <!-- ADD ITEM FORM -->
-  <section class="form-section">
-    <h2>Add Item</h2>
-    <form id="itemForm">
-      <input type="text" id="name" placeholder="Item Name" required>
-      <input type="number" id="quantity" placeholder="Quantity" required>
-      <input type="text" id="category" placeholder="Category" required>
-      <button type="submit">Add Item</button>
-    </form>
-  </section>
+<!-- LOGIN & REGISTER -->
+<section id="authSection" class="auth-section">
 
-  <!-- INVENTORY TABLE -->
-  <section>
-    <h2>Inventory List</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Item Name</th>
-          <th>Quantity</th>
-          <th>Category</th>
-          <th>Actions</th>
-        </tr>
-      </thead>
-      <tbody id="inventoryTable"></tbody>
-    </table>
-  </section>
+  <h2>Register</h2>
+  <input type="text" id="regName" placeholder="Full Name">
+  <input type="email" id="regEmail" placeholder="Email">
+  <input type="password" id="regPassword" placeholder="Password">
+  <button onclick="registerUser()">Register</button>
+
+  <hr>
+  
+ <h2>Login</h2>
+  <input type="email" id="loginEmail" placeholder="Email">
+  <input type="password" id="loginPassword" placeholder="Password">
+  <button onclick="loginUser()">Login</button>
+</section>
+
+<!-- MAIN PAGE -->
+<section id="mainSection" class="page-section" style="display:none;">
+  <h2>Welcome to Genius Creator Store</h2>
+
+  <div class="cards">
+    <div class="card">
+      <h3>Total Items</h3>
+      <p id="totalItems">0</p>
+    </div>
+
+    <div class="card">
+      <h3>Low Stock Items</h3>
+      <p id="lowStockCount">0</p>
+    </div>
+  </div>
+</section>
+
+<!-- INVENTORY -->
+<section id="inventorySection" class="page-section" style="display:none;">
+  <h2>Inventory List</h2>
+  <button class="add-btn" onclick="openModal()">➕ Add Item</button>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Qty</th>
+        <th>Category</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody id="inventoryTable"></tbody>
+  </table>
+</section>
 
 </main>
 
+<!-- MODAL -->
+<div class="modal" id="itemModal">
+  <div class="modal-content">
+    <h3>Add / Edit Item</h3>
+    <input type="text" id="itemName" placeholder="Item Name">
+    <input type="number" id="itemQty" placeholder="Quantity">
+    <input type="text" id="itemCategory" placeholder="Category">
+    <button onclick="saveItem()">Save</button>
+    <button class="cancel-btn" onclick="closeModal()">Cancel</button>
+  </div>
+</div>
+
 <footer>
-  <p>© 2025 Inventory Management System</p>
+  © 2025 Genius Creator Inventory System
 </footer>
 
 <script src="js/script.js"></script>
