@@ -1,90 +1,141 @@
+let users = JSON.parse(localStorage.getItem("users")) || [];
+let currentUser = JSON.parse(localStorage.getItem("currentUser")) || null;
 let inventory = JSON.parse(localStorage.getItem("inventory")) || [];
-const table = document.getElementById("inventoryTable");
-const form = document.getElementById("itemForm");
+let editIndex = null;
 
-// Add Item
-form.addEventListener("submit", function (e) {
-  e.preventDefault();
+/* SIDEBAR */
+function toggleSidebar(){
+  document.getElementById("sidebar").classList.toggle("show");
+}
 
-  const item = {
-    name: document.getElementById("name").value,
-    quantity: document.getElementById("quantity").value,
-    category: document.getElementById("category").value
-  };
+/* REGISTER */
+function registerUser(){
+  if(!regName.value || !regEmail.value || !regPassword.value){
+    alert("Fill all fields");
+    return;
+  }
+  if(users.find(u=>u.email===regEmail.value)){
+    alert("Email already exists");
+    return;
+  }
+  users.push({name:regName.value,email:regEmail.value,password:regPassword.value});
+  localStorage.setItem("users",JSON.stringify(users));
+  alert("Registered successfully!");
+}
 
-  inventory.push(item);
-  saveAndRender();
-  form.reset();
-});
+/* LOGIN */
+function loginUser(){
+  const user = users.find(
+    u=>u.email===loginEmail.value && u.password===loginPassword.value
+  );
+  if(!user){ alert("Invalid login"); return; }
 
-// Render Inventory Table
-function renderInventory() {
-  table.innerHTML = "";
+  currentUser=user;
+  localStorage.setItem("currentUser",JSON.stringify(user));
 
-  inventory.forEach((item, index) => {
-    const row = document.createElement("tr");
+  authSection.style.display="none";
+  mainSection.style.display="block";
+  profileSidebar.style.display="block";
+  profileName.innerText=user.name;
+  profileEmail.innerText=user.email;
+  updateCounts();
+}
 
-    row.innerHTML = `
-      <td>${item.name}</td>
-      <td>${item.quantity}</td>
-      <td>${item.category}</td>
-      <td class="actions">
-        <button onclick="editItem(${index})">Edit</button>
-        <button onclick="deleteItem(${index})">Delete</button>
-      </td>
-    `;
+/* LOGOUT */
+function logoutUser(){
+  localStorage.removeItem("currentUser");
+  location.reload();
+}
 
-    table.appendChild(row);
+/* SECTIONS */
+function showSection(id){
+  mainSection.style.display="none";
+  inventorySection.style.display="none";
+  document.getElementById(id).style.display="block";
+  toggleSidebar();
+}
+
+/* INVENTORY */
+function renderInventory(){
+  inventoryTable.innerHTML="";
+  inventory.forEach((item,i)=>{
+    inventoryTable.innerHTML+=`
+      <tr>
+        <td>${item.name}</td>
+        <td>${item.qty}</td>
+        <td>${item.category}</td>
+        <td>
+          <button onclick="editItem(${i})">Edit</button>
+          <button onclick="deleteItem(${i})">Delete</button>
+        </td>
+      </tr>`;
   });
+  updateCounts();
 }
 
-// Delete Item
-function deleteItem(index) {
-  inventory.splice(index, 1);
-  saveAndRender();
+function updateCounts(){
+  totalItems.innerText = inventory.length;
+  lowStockCount.innerText = inventory.filter(i=>i.qty<5).length;
 }
 
-// Edit Item Inline
-function editItem(index) {
-  const item = inventory[index];
-  const row = table.rows[index];
-
-  row.innerHTML = `
-    <td><input type="text" id="editName" value="${item.name}"></td>
-    <td><input type="number" id="editQuantity" value="${item.quantity}"></td>
-    <td><input type="text" id="editCategory" value="${item.category}"></td>
-    <td>
-      <button onclick="saveEdit(${index})">Save Changes</button>
-      <button onclick="cancelEdit()">Cancel</button>
-    </td>
-  `;
+function openModal(item=null){
+  itemModal.style.display="flex";
+  if(item){
+    itemName.value=item.name;
+    itemQty.value=item.qty;
+    itemCategory.value=item.category;
+  }else{
+    itemName.value=itemQty.value=itemCategory.value="";
+  }
 }
 
-// Save Edited Item
-function saveEdit(index) {
-  const editedName = document.getElementById("editName").value;
-  const editedQty = document.getElementById("editQuantity").value;
-  const editedCategory = document.getElementById("editCategory").value;
-
-  inventory[index] = {
-    name: editedName,
-    quantity: editedQty,
-    category: editedCategory
-  };
-
-  saveAndRender();
+function closeModal(){
+  itemModal.style.display="none";
 }
 
-// Cancel Edit
-function cancelEdit() {
+function saveItem(){
+  const item={name:itemName.value,qty:+itemQty.value,category:itemCategory.value};
+  if(editIndex!==null){
+    inventory[editIndex]=item;
+    editIndex=null;
+  }else{
+    inventory.push(item);
+  }
+  save();
+  closeModal();
+}
+
+function editItem(i){
+  editIndex=i;
+  openModal(inventory[i]);
+}
+
+function deleteItem(i){
+  inventory.splice(i,1);
+  save();
+}
+
+function save(){
+  localStorage.setItem("inventory",JSON.stringify(inventory));
   renderInventory();
 }
 
-// Save to localStorage and render
-function saveAndRender() {
-  localStorage.setItem("inventory", JSON.stringify(inventory));
-  renderInventory();
+/* EXPORT */
+function exportCSV(){
+  let csv="Name,Qty,Category\n";
+  inventory.forEach(i=>csv+=`${i.name},${i.qty},${i.category}\n`);
+  const a=document.createElement("a");
+  a.href=URL.createObjectURL(new Blob([csv]));
+  a.download="inventory.csv";
+  a.click();
 }
 
-// Initial render
-renderInventory();
+/* AUTO LOGIN */
+if(currentUser){
+  authSection.style.display="none";
+  mainSection.style.display="block";
+  profileSidebar.style.display="block";
+  profileName.innerText=currentUser.name;
+  profileEmail.innerText=currentUser.email;
+  updateCounts();
+}
