@@ -1,0 +1,213 @@
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --primary: #1f2937;
+  --secondary: #3b82f6;
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --bg: #f9fafb;
+  --card: #ffffff;
+  --text: #111827;
+  --muted: #6b7280;
+  --radius: 10px;
+}
+
+/* ================= GLOBAL ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Arial, sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* ================= HEADER ================= */
+.topbar {
+  background: var(--primary);
+  color: white;
+  text-align: center;
+  padding: 1.5rem 1rem;
+}
+
+.topbar h1 {
+  font-size: 1.8rem;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #d1d5db;
+  margin-top: 0.3rem;
+}
+
+/* ================= MAIN ================= */
+main {
+  max-width: 1100px;
+  margin: auto;
+  padding: 1.5rem;
+}
+
+/* ================= CARD ================= */
+.form-section,
+section table {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+/* ================= FORM ================= */
+.form-section {
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.form-section h2 {
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+form input {
+  flex: 1 1 180px;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius);
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--secondary);
+}
+
+form button {
+  background: var(--secondary);
+  color: white;
+  border: none;
+  padding: 0.6rem 1.3rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+form button:hover {
+  opacity: 0.9;
+}
+
+/* ================= TABLE ================= */
+section h2 {
+  margin-bottom: 1rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  background: #f3f4f6;
+  font-weight: 600;
+  padding: 0.8rem;
+}
+
+td {
+  padding: 0.7rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+tr:hover {
+  background: #f9fafb;
+}
+
+/* ================= ACTION BUTTONS ================= */
+.actions button {
+  border: none;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.actions .edit {
+  background: var(--warning);
+}
+
+.actions button:not(.edit) {
+  background: var(--danger);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 600px) {
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+
+  .topbar h1 {
+    font-size: 1.4rem;
+  }
+}
+
+/* ================= FOOTER ================= */
+footer {
+  text-align: center;
+  margin: 2rem 0;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+
+/* ================= EDIT ROW INPUTS ================= */
+table input[type="text"],
+table input[type="number"] {
+  width: 100%;
+  padding: 0.5rem 0.6rem;
+  border: 1px solid #d1d5db;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+}
+
+table input:focus {
+  outline: none;
+  border-color: var(--secondary);
+}
+
+/* ================= EDIT ACTION BUTTONS ================= */
+.actions .save {
+  background: var(--secondary);
+  color: white;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border: none;
+  margin-right: 0.3rem;
+  transition: 0.2s ease;
+}
+
+.actions .save:hover {
+  opacity: 0.9;
+}
+
+.actions .cancel {
+  background: var(--danger);
+  color: white;
+  padding: 0.35rem 0.7rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  border: none;
+  transition: 0.2s ease;
+}
+
+.actions .cancel:hover {
+  opacity: 0.9;
+}
+

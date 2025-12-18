@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventory Management System</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<header class="topbar">
+  <h1>Inventory Management System</h1>
+  <p class="subtitle">Simple • Fast • Reliable</p>
+</header>
+
+
+<main>
+
+  <!-- ADD ITEM FORM -->
+  <section class="form-section">
+    <h2>Add Item</h2>
+    <form id="itemForm">
+      <input type="text" id="name" placeholder="Item Name" required>
+      <input type="number" id="quantity" placeholder="Quantity" required>
+      <input type="text" id="category" placeholder="Category" required>
+      <button type="submit">Add Item</button>
+    </form>
+  </section>
+
+  <!-- INVENTORY TABLE -->
+  <section>
+    <h2>Inventory List</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Quantity</th>
+          <th>Category</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="inventoryTable"></tbody>
+    </table>
+  </section>
+
+</main>
+
+<footer>
+  <p>© 2025 Inventory Management System</p>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
