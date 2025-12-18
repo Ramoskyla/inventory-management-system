@@ -1,213 +1,210 @@
-/* ================= ROOT VARIABLES ================= */
-:root {
-  --primary: #1f2937;
-  --secondary: #3b82f6;
-  --danger: #ef4444;
-  --warning: #f59e0b;
-  --bg: #f9fafb;
-  --card: #ffffff;
-  --text: #111827;
-  --muted: #6b7280;
-  --radius: 10px;
+:root{
+  --primary:#111827;
+  --secondary:#2563eb;
+  --accent:#22c55e;
+  --danger:#ef4444;
+  --bg:#f4f6f8;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --radius:12px;
 }
 
-/* ================= GLOBAL ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Segoe UI", Arial, sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Segoe UI",sans-serif;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-/* ================= HEADER ================= */
-.topbar {
-  background: var(--primary);
-  color: white;
-  text-align: center;
-  padding: 1.5rem 1rem;
+/* TOP BAR */
+.topbar{
+  background:var(--primary);
+  color:white;
+  text-align:center;
+  padding:1.2rem;
 }
 
-.topbar h1 {
-  font-size: 1.8rem;
+/* LAYOUT */
+main{
+  max-width:1100px;
+  margin:auto;
+  padding:1.5rem;
 }
 
-.subtitle {
-  font-size: 0.9rem;
-  color: #d1d5db;
-  margin-top: 0.3rem;
+.page-section{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:1.5rem;
+  margin-bottom:2rem;
+  box-shadow:0 10px 30px rgba(0,0,0,.05);
 }
 
-/* ================= MAIN ================= */
-main {
-  max-width: 1100px;
-  margin: auto;
-  padding: 1.5rem;
+/* SIDEBAR */
+.sidebar{
+  position:fixed;
+  top:0;
+  left:-270px;
+  width:270px;
+  height:100%;
+  background:var(--primary);
+  color:white;
+  padding:1.5rem;
+  transition:.3s;
+  z-index:1000;
+}
+.sidebar.show{left:0;}
+
+.sidebar nav a{
+  display:block;
+  padding:.7rem 1rem;
+  margin:.4rem 0;
+  color:white;
+  text-decoration:none;
+  border-radius:8px;
+}
+.sidebar nav a:hover{
+  background:rgba(255,255,255,.1);
 }
 
-/* ================= CARD ================= */
-.form-section,
-section table {
-  background: var(--card);
-  border-radius: var(--radius);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+.profile-box{
+  text-align:center;
+  margin-bottom:1.5rem;
+}
+.profile-img{
+  width:80px;
+  border-radius:50%;
+  margin-bottom:.5rem;
 }
 
-/* ================= FORM ================= */
-.form-section {
-  padding: 1.5rem;
-  margin-bottom: 2rem;
+.mode-toggle{
+  width:100%;
+  margin-top:1rem;
+  padding:.7rem;
+  border:none;
+  border-radius:8px;
+  background:#1f2937;
+  color:white;
+  cursor:pointer;
 }
 
-.form-section h2 {
-  margin-bottom: 1rem;
-  font-size: 1.2rem;
+.hamburger{
+  position:fixed;
+  top:1rem;
+  left:1rem;
+  font-size:1.8rem;
+  color:white;
+  cursor:pointer;
+  z-index:1100;
 }
 
-form {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.8rem;
+/* AUTH */
+.auth-section{
+  max-width:420px;
+  margin:3rem auto;
+  background:var(--card);
+  padding:2rem;
+  border-radius:var(--radius);
+  box-shadow:0 20px 40px rgba(0,0,0,.08);
+}
+.auth-section input{
+  width:100%;
+  padding:.8rem;
+  margin:.5rem 0;
+  border-radius:8px;
+  border:1px solid #d1d5db;
+}
+.auth-section button{
+  width:100%;
+  padding:.8rem;
+  background:var(--secondary);
+  border:none;
+  border-radius:8px;
+  color:white;
+  cursor:pointer;
 }
 
-form input {
-  flex: 1 1 180px;
-  padding: 0.6rem 0.7rem;
-  border: 1px solid #d1d5db;
-  border-radius: var(--radius);
+/* DASHBOARD CARDS */
+.cards{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:1rem;
+}
+.card{
+  background:linear-gradient(135deg,#2563eb,#1d4ed8);
+  color:white;
+  padding:1.5rem;
+  border-radius:var(--radius);
+  text-align:center;
+}
+.card:nth-child(2){
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+}
+.card p{
+  font-size:2.2rem;
+  font-weight:bold;
 }
 
-form input:focus {
-  outline: none;
-  border-color: var(--secondary);
+/* TABLE */
+table{
+  width:100%;
+  border-collapse:collapse;
+  margin-top:1rem;
+}
+th{
+  background:#f3f4f6;
+  padding:.9rem;
+}
+td{
+  padding:.8rem;
+  border-bottom:1px solid #e5e7eb;
+}
+td button{
+  padding:.4rem .8rem;
+  border:none;
+  border-radius:6px;
+  color:white;
+  cursor:pointer;
+}
+td button:first-child{background:var(--secondary);}
+td button:last-child{background:var(--danger);}
+
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.5);
+  justify-content:center;
+  align-items:center;
+}
+.modal-content{
+  background:white;
+  padding:2rem;
+  border-radius:var(--radius);
+  width:90%;
+  max-width:420px;
+}
+.modal-content input{
+  width:100%;
+  padding:.7rem;
+  margin:.5rem 0;
+}
+.cancel-btn{
+  background:#9ca3af;
+  margin-top:.5rem;
 }
 
-form button {
-  background: var(--secondary);
-  color: white;
-  border: none;
-  padding: 0.6rem 1.3rem;
-  border-radius: var(--radius);
-  cursor: pointer;
-  transition: 0.2s ease;
+/* FOOTER */
+footer{
+  text-align:center;
+  margin:2rem;
+  font-size:.85rem;
+  color:var(--muted);
 }
-
-form button:hover {
-  opacity: 0.9;
-}
-
-/* ================= TABLE ================= */
-section h2 {
-  margin-bottom: 1rem;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-th {
-  background: #f3f4f6;
-  font-weight: 600;
-  padding: 0.8rem;
-}
-
-td {
-  padding: 0.7rem;
-  border-bottom: 1px solid #e5e7eb;
-}
-
-tr:hover {
-  background: #f9fafb;
-}
-
-/* ================= ACTION BUTTONS ================= */
-.actions button {
-  border: none;
-  padding: 0.35rem 0.7rem;
-  border-radius: 6px;
-  color: white;
-  cursor: pointer;
-  font-size: 0.8rem;
-}
-
-.actions .edit {
-  background: var(--warning);
-}
-
-.actions button:not(.edit) {
-  background: var(--danger);
-}
-
-/* ================= RESPONSIVE ================= */
-@media (max-width: 600px) {
-  table {
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
-  }
-
-  .topbar h1 {
-    font-size: 1.4rem;
-  }
-}
-
-/* ================= FOOTER ================= */
-footer {
-  text-align: center;
-  margin: 2rem 0;
-  font-size: 0.85rem;
-  color: var(--muted);
-}
-
-/* ================= EDIT ROW INPUTS ================= */
-table input[type="text"],
-table input[type="number"] {
-  width: 100%;
-  padding: 0.5rem 0.6rem;
-  border: 1px solid #d1d5db;
-  border-radius: var(--radius);
-  font-size: 0.9rem;
-}
-
-table input:focus {
-  outline: none;
-  border-color: var(--secondary);
-}
-
-/* ================= EDIT ACTION BUTTONS ================= */
-.actions .save {
-  background: var(--secondary);
-  color: white;
-  padding: 0.35rem 0.7rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  border: none;
-  margin-right: 0.3rem;
-  transition: 0.2s ease;
-}
-
-.actions .save:hover {
-  opacity: 0.9;
-}
-
-.actions .cancel {
-  background: var(--danger);
-  color: white;
-  padding: 0.35rem 0.7rem;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 0.8rem;
-  border: none;
-  transition: 0.2s ease;
-}
-
-.actions .cancel:hover {
-  opacity: 0.9;
-}
-
