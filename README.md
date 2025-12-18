@@ -1,4 +1,4 @@
-# 📦 Inventory Management System (Frontend Only)
+# 📦 Inventory Management System
 ## 📌 Project Overview
 
 The **Inventory Management System** is a responsive, frontend-only web application designed to manage store inventory efficiently.  
@@ -67,5 +67,6 @@ This project uses **browser localStorage** to store:
 
 📌 Disclaimer
 This system is frontend-only and intended for academic and portfolio use.
+
 
 
