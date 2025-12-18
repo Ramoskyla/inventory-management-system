@@ -1,41 +1,71 @@
-# Inventory Management System
+# 📦 Inventory Management System (Frontend Only)
+## 📌 Project Overview
 
-A simple, fast, and reliable **Inventory Management System** built with HTML, CSS, and JavaScript.  
-This system allows you to **add, edit, and delete inventory items**. Edited items use a **separate card interface** to make editing intuitive and visually distinct from the table.
+The **Inventory Management System** is a responsive, frontend-only web application designed to manage store inventory efficiently.  
+It allows users to register, log in, manage inventory items, monitor low stock alerts, and export inventory reports — all without a backend server.
 
----
+This project demonstrates skills in **HTML5, CSS3, JavaScript, UI/UX design, and Git/GitHub deployment**.
 
-## Features
+🛠 Technology Stack
 
-- **Add Item**: Add new inventory items with name, quantity, and category.  
-- **Inventory List**: View all items in a responsive table.  
-- **Separate Edit Card**:  
-  - When editing, a card appears above the table instead of modifying the row.  
-  - Provides **Save Changes** and **Cancel** buttons.  
-  - Inputs are styled with borders, radius, and shadows to stand out from the table.  
-- **Delete Item**: Remove items from inventory.  
-- **Persistent Data**: Uses `localStorage` so inventory data remains after page reloads.  
-- **Responsive Design**: Table scrolls horizontally on small screens, and the layout adapts to mobile devices.  
+- **HTML5** – Semantic structure  
+- **CSS3** – Custom styling, CSS variables, responsive design  
+- **JavaScript (Vanilla JS)** – Application logic & localStorage  
+- **Git & GitHub** – Version control  
+- **GitHub Pages** – Deployment  
+
+✨ Features ✨
+
+🔐 Authentication
+- User Registration
+- User Login
+- Session persistence using `localStorage`
+
+👤 Profile (Sidebar Only)
+- Profile photo
+- Name and email display
+- Visible only inside the sidebar menu
+
+📊 Dashboard (Main Page)
+- Total inventory items count
+- Low stock item alert counter
+
+📦 Inventory Management
+- Add new items
+- Edit existing items
+- Delete items
+- Category support
+- Low stock detection (quantity < 5)
+
+📄 Export
+- Export inventory data as **CSV file**
+
+🌗 UI / UX
+- Professional layout
+- Sidebar with hamburger menu
+- Dark mode toggle
+- Fully responsive (Mobile / Tablet / Desktop)
 
 
-## Technologies Used
+📱 Responsiveness
+The system is fully responsive and optimized for:
+- 📱 Mobile Phones
+- 📲 Tablets
+- 💻 Desktop Screens
 
-- **HTML5**: Structure and layout of the system.  
-- **CSS3 (with variables)**: Styling using a clean design system (primary, secondary, danger, card, etc.).  
-- **JavaScript (ES6)**: Functionality for adding, editing, deleting, and persisting inventory items.  
-- **LocalStorage**: Persistent data storage on the browser.  
+Layout automatically adjusts based on screen size.
 
+🧪 Data Storage
 
-## Author
-
-Kyla Ramos  
-IT Student – Universidad de Dagupan  
-
----
-
-## License
-
-This project is open-source and free to use.
+This project uses **browser localStorage** to store:
+- Registered users
+- Logged-in session
+- Inventory data
 
 
-# inventory-management-system
+> No backend or database is required.
+
+📌 Disclaimer
+This system is frontend-only and intended for academic and portfolio use.
+
+
